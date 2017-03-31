@@ -1,0 +1,355 @@
+/**
+ *------
+ * BGA framework: © Gregory Isabelli <gisabelli@boardgamearena.com> & Emmanuel Colin <ecolin@boardgamearena.com>
+ * akeruption implementation : © <Your name here> <Your email address here>
+ *
+ * This code has been produced on the BGA studio platform for use on http://boardgamearena.com.
+ * See http://en.boardgamearena.com/#!doc/Studio for more information.
+ * -----
+ *
+ * akeruption.css
+ *
+ * akeruption stylesheet
+ *
+ */
+
+/*
+    This is the CSS stylesheet of your game User Interface.
+    
+    Styles defined on this file will be applied to the HTML elements you define in your
+    HTML template (akeruption_akeruption.tpl), and to HTML elements you create dynamically
+    (in akeruption.js).
+    
+    Usually, you are using CSS to:
+    
+    1°) define the overall layout of your game
+        (ex: place the board on the top left, place player's hand beside, place the deck on the right, ...).
+
+    2°) create your CSS-sprites:
+        All images of your games should be gathered into a small number of image files. Then, using
+        background-image and background-position CSS properties, you create HTML blocks that can 
+        display these images correctly (see example below).
+    
+    3°) ... anything else:
+        It is really easy to add and remove CSS classes dynamically from your Javascript with
+        dojo.addClass and dojo.removeClass. It is also easy to check if an element has a class
+        (dojo.hasClass) or to get all elements with a specific class (dojo.query). This is why,
+        very often, using CSS classes for the logic of your user interface allow you to do complex
+        thing easily.
+        
+        
+     Note: on the production platform, this file will be compressed and comments will be removed.
+           Consequently, don't hesitate to put as many comments as necessary.
+*/
+
+@import url(../../../css/csslayer.css); /* Note: you must not use any @import directive other than this one */
+
+/********* You can start writing your CSS below this line: **********/
+
+/* tiles approx 71x62 at board 734 */
+/*
+UI todo list:
+15 - damn statistics!
+
+[14 - could add action cards and source tiles to player panel]
+[16 - tweak res gain timing]
+[7 - action card stack & discard to fill space]
+[13 - tidy temp icons]
+[10 - consider where 'drawn tile' might go --> in player areas!]
+[11 - could animate wall going to player when gained from tile]
+[8 - wall sizing and/or images]
+[6 - use correct lava source backs]
+[12 - check naming, refer to walls not materials]
+[2 - resource icons for player panel]
+[3 - action cards]
+[4 - move tile stack onto board]
+[5 - use correct tile stack back]
+[1 - lava tiles on board]
+[9 - remove debug coords]
+*/
+#board {
+    height: 734px;
+    width: 734px;
+    background-image: url('img/board736.jpg');
+    float: left;
+}
+
+#tileStack {
+    /*height: 80px;
+    margin-left: 800px;*/
+    background-image: url('img/tileBack.png');
+    height: 61px;
+    width: 70px;
+    position:relative;
+    top: 336px;
+    left:332px;
+}
+
+#cardStack {
+    padding:5px;
+    width: 245px;
+    position:relative;
+    float: left;
+}
+
+.card {
+    background-image: url('img/actioncards.png');
+    height: 175px;
+    width: 115px;
+}
+
+.cardBack {
+    background-image: url('img/card_back.png');
+    height: 175px;
+    width: 115px;
+}
+
+#cardDraw {
+    position:relative;
+    float: left;
+}
+
+#cardDiscard {
+    margin-left:5px;
+    height: 175px;
+    width: 115px;
+    position:relative;
+    float: left;
+}
+
+#nextTile {
+    position:relative;
+    height: 0px;
+    width: 0px;
+    top: 0px;
+    left:332px;
+}
+
+#eruptionTiles {
+    float: left;
+}
+
+.eruptionTileHolder {
+    margin: 5px;
+    height: 61px;
+    width: 70px;
+    position: relative;
+    float:left;
+}
+
+.eruptionTile {
+    position: absolute;
+    height: 61px;
+    width: 70px;
+}
+
+#eruptionTile1 {
+    background-image: url('img/eruptionBack1.png');
+}
+
+#eruptionTile2 {
+    background-image: url('img/eruptionBack2.png');
+}
+
+#eruptionTile3 {
+    background-image: url('img/eruptionBack3.png');
+}
+
+#tileCount {
+    position: absolute;
+    text-align: center; 
+    padding-top: 16px;
+    font-size: 24px;
+    width: 70px;
+}
+
+#cardCount {
+    position: absolute;
+    text-align: center; 
+    padding-top: 66px;
+    font-size: 24px;
+    width: 115px;
+}
+
+.tile {
+    width: 70px;
+    height: 61px;
+    border: 0px dotted red;
+}
+
+.tileClickable {
+    position: absolute;
+    margin-left: 15px;
+    margin-top: 2px;
+    width: 40px;
+    height: 60px;
+    border: 0px solid blue;
+}
+
+.active {
+    cursor: pointer;
+}
+
+.lava {
+    background-image: url('img/lava.png');
+}
+
+.rotator {
+    width: 130px;
+    z-index: 100;
+}
+
+.anticlockwiseArrow {
+    background-image: url('img/arrowL.png');
+    height: 57px;
+    width: 33px;
+    float: left;
+    cursor: pointer;
+}
+.clockwiseArrow {
+    background-image: url('img/arrowR.png');
+    height: 57px;
+    width: 33px;
+    float: right;
+    cursor: pointer;
+}
+.playerToken {
+    background-image: url('img/tokens.png');
+    height: 28px;
+    width: 24px;
+}
+
+.iconholder {
+    height: 25px;
+    clear: both;
+}
+
+.cardicon {
+    background-image: url('img/cardicon.png');
+    height: 25px;
+    width: 18px;
+    float: left;
+    margin-left: 10px;
+    margin-right: 13px;
+    z-index:100;
+}
+
+.sourceicon {
+    background-image: url('img/sourceicon.png');
+    height: 25px;
+    width: 29px;
+    margin-left: 6px;
+    margin-right: 6px;
+    float: left;
+    z-index:100;
+}
+
+.wallicon {
+    background-image: url('img/icons.png');
+    height: 20px;
+    width: 41px;
+    float: left;
+    z-index:100;
+}
+
+.wallcount {
+    height: 20px;
+    width: 20px;
+    float: left;
+    padding-top: 3px;
+    padding-left: 3px;
+}
+
+.strawicon {
+    background-position: left -0px top -0px;
+}
+
+.woodicon {
+    background-position: left -0px top -20px;
+}
+
+.stoneicon {
+    background-position: left -0px top -40px;
+}
+
+.testArrow {
+    height: 25px;
+    width: 25px;
+    background: url('img/green-down-arrow-sm.png') no-repeat center;
+    z-index: 20;
+    position: absolute;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.testArrow:hover {
+    height: 25px;
+    width: 25px;
+    background: url('img/green-down-arrow.png') no-repeat center;
+}
+
+.rotate60 {
+    transform: rotate(60deg);
+}
+
+.wall {
+    position: absolute;
+    width: 30px;
+    height: 10px;
+    background-image: url('img/walls.png');
+    z-index: 100;
+}
+
+.clickableWall {
+    cursor: pointer;
+}
+
+.wallType_wood {
+    background-position: left 0px top -10px;
+}
+
+.wallType_stone {
+    background-position: left 0px top -20px;
+}
+
+#spacer, #privatePlayerCards {
+    margin-left: 739px;
+    margin-right: 5px;
+}
+
+#spacer{
+    height: 1px;
+}
+
+.marginLeft5Clear {
+    margin-left: 5px !important;
+    clear: both;
+}
+
+.whiteblock {
+    position: relative;
+    min-height: 100px;
+    border-radius: 10px;
+}
+
+/*
+    Example of CSS sprites (a black token and a white token, 20x20px each, embedded in the same "tokens.png" 40x20px image):
+
+    .white_token {
+        background-image: url('img/tokens.png');
+        background-position: 0px 0px;
+    }
+    .black_token {
+        background-image: url('img/tokens.png');
+        background-position: -20px 0px;
+    }
+    .token {
+        width: 20px;
+        height: 20px;
+        background-repeat: none;
+    }
+*/
+
+
+
+
