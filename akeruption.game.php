@@ -727,8 +727,8 @@ class akeruption extends Table
 
     function checkWallDestroyed($wall, $includeActivePlayerName)
     {
-        $wallStrength = rand(1, 6);
-        $lavaStrength = rand(1, 6);
+        $wallStrength = bga_rand(1, 6);
+        $lavaStrength = bga_rand(1, 6);
         $wallBonus = 0;
         if ($wall['wall_type'] == $this->resourceTypeWood) {
             $wallBonus = 1;
