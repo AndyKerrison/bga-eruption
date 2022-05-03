@@ -961,7 +961,7 @@ function (dojo, declare) {
                 return;
             }
             
-            if (!this.canAddTile && items[0].type == 0)
+            if (!this.canAddTile && (items[0].type == 0 || items[0].type == 7))
             {
                 this.showMessage(this.errorStackEmpty, 'error');
                 return;

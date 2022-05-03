@@ -102,7 +102,7 @@ $this->board_resources = array(
     10 => array( 'type_id' => 10, 'lavaPoints' => array(0,1,3,4), 'isSourceTile' => false, 'count' => 4),
     11 => array( 'type_id' => 11, 'lavaPoints' => array(0,1,2,3), 'isSourceTile' => false, 'count' => 4),
 	12 => array( 'type_id' => 12, 'lavaPoints' => array(0,1,3,5), 'isSourceTile' => false, 'count' => 6),
-    13 => array( 'type_id' => 13, 'lavaPoints' => array(0,1,2,3,5), 'isSourceTile' => false, 'count' => 6)    
+    13 => array( 'type_id' => 13, 'lavaPoints' => array(0,1,2,3,5), 'isSourceTile' => false, 'count' => 6)
 );
 
 //cards in the action deck

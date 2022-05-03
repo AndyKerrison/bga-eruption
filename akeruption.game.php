@@ -2354,6 +2354,9 @@ class akeruption extends Table
                 return;
                 break;
             case 7://Quake - replace a lava tile
+                if (!$this->tiles->countCardsInLocation("deck") > 0) {                    
+					throw new BgaSystemException("No tiles remaining");
+                }			
                 if (!$this->tiles->countCardsInLocation("board") > 0) {
                     throw new feException("No tiles on the board");
                 }
