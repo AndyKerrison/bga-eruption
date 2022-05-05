@@ -646,16 +646,17 @@ function (dojo, declare) {
         placeActionCard: function(card_id, type, location)
         {
             var y = 0;
-            if (type >= this.cardsPerRowInImg)
+			var displayType = type;
+            if (displayType >= this.cardsPerRowInImg)
             {
-                type -= this.cardsPerRowInImg;
+                displayType -= this.cardsPerRowInImg;
                 y += this.cardHeight;
             }
             
             dojo.place(
                     this.format_block('jstpl_actionCard', {
                         card_id : card_id,
-                        x: this.cardWidth*type,
+                        x: this.cardWidth*displayType,
                         y: this.cardHeight*y,
                         z: 100
                     }), location);
@@ -1547,7 +1548,9 @@ function (dojo, declare) {
             
             this.placeActionCard(notif.args.card_id, notif.args.card_type, location);
                                
+			//attach to new parent kills the tooltip? So add a new one
             this.attachToNewParent("card_"+notif.args.card_id, "cardDiscard");
+			this.addTooltip("card_" + notif.args.card_id, "", this.getTooltip(notif.args.card_type));
             
             if (notif.args.player_id == this.player_id) {
                 this.playerHand.removeFromStockById(notif.args.card_id);
