@@ -131,15 +131,17 @@ function (dojo, declare) {
             this.strCardEffect = _('Play card effect');
             this.strFinished = _('Finished');
 
-            this.strAftershock = _('Allows a player to rotate any tile on the board to any position. The tile must remain in its current location. No tiles may violate standard tile placement rules due to the rotation of the tile. Any walls on the tile are immediately discarded. ');
-            this.strLavaFlow = _('Allows a player to draw and place a new Lava Tile following standard tile placement rules.');
-            this.strRelocate = _('Allows a player to move one or more walls in his village to any other location within the village. After doing so, no more than one wall may exist in any one location.');
-            this.strSinkhole = _('Allows a player to discard any existing tile from the board, along with any walls built on it. No tiles may violate standard tile placement rules due to the removal of the tile.');
-            this.strQuake = _('Allows a player to draw a new Lava Tile and immediately replace any existing tile on the board. The new tile must follow standard tile placement rules. The old tile, along with any walls built on it, is discarded from the board. If no replacements can be made, the tile is placed randomly within the stack and another tile is drawn.');
-            this.strRain = _('Allows a player to immediately cool down his own village by 30 degrees on the Burn Meter.');
-            this.strReinforce = _('Allows a player to immediately build a wall from his stockpile, in addition to the one wall normally allowed at the end of the turn.');
-            this.strVolcanicBomb = _('Allows a player to discard any wall that is currently on the board, belonging to any player.');
-            
+            this.strAftershock = _('Allows a player to rotate any tile on the board to any position. The tile must remain in its current location. No tiles may violate standard tile placement rules due to the rotation of the tile. Any walls on the tile are immediately discarded. Can instead be traded for 1 stone wall');
+            this.strQuake = _('Allows a player to draw a new Lava Tile and immediately replace any existing tile on the board. The new tile must follow standard tile placement rules. The old tile, along with any walls built on it, is discarded from the board. If no replacements can be made, the tile is placed randomly within the stack and another tile is drawn. Can instead be traded for 1 stone wall');
+			
+			this.strRain = _('Allows a player to immediately cool down his own village by 30 degrees on the Burn Meter. Can instead be traded for 1 wood wall');
+			this.strSinkhole = _('Allows a player to discard any existing tile from the board, along with any walls built on it. No tiles may violate standard tile placement rules due to the removal of the tile. Can instead be traded for 1 wood wall');
+			this.strVolcanicBomb = _('Allows a player to discard any wall that is currently on the board, belonging to any player. Can instead be traded for 1 wood wall');
+			
+            this.strLavaFlow = _('Allows a player to draw and place a new Lava Tile following standard tile placement rules. Can instead be traded for 1 straw wall');
+            this.strRelocate = _('Allows a player to move one or more walls in his village to any other location within the village. After doing so, no more than one wall may exist in any one location. Can instead be traded for 1 straw wall');
+            this.strReinforce = _('Allows a player to immediately build a wall from his stockpile, in addition to the one wall normally allowed at the end of the turn. Can instead be traded for 1 straw wall');
+                        
             this.strStrawTooltip = _("Straw walls have no bonus when defending against a lava flow. Each straw wall in your village or supply is worth 1pt in a tiebreaker");
             this.strWoodTooltip = _("Wood walls have a +1 bonus when defending against a lava flow. Each wood wall in your village or supply is worth 2pts in a tiebreaker");
             this.strStoneTooltip = _("Stone walls have a +2 bonus when defending against a lava flow. Each stone wall in your village or supply is worth 3pts in a tiebreaker");
