@@ -1549,9 +1549,15 @@ class akeruption extends Table
         }
         else if (count($connectedWalls) > 0) {
             $burnt = false;
-            foreach($connectedWalls as $wall) {
-                $burnt = $burnt || $this->checkWallDestroyed($wall, false);
+            foreach($connectedWalls as $key => $wall) {
+				$result = $this->checkWallDestroyed($wall, false);							
+				if ($result)
+				{
+					unset($connectedWalls[$key]);
+				}
+                $burnt = $burnt || $result;
             }
+			reset($connectedWalls);
 
             //all walls get rolled against. If ANY fail, they all get destroyed
             if (!$burnt) {
@@ -1573,6 +1579,21 @@ class akeruption extends Table
                 $this->gamestate->nextState( 'wallsDefended' );
                 return;
             }
+			else
+			{
+				//remove any remaining connected walls
+				foreach($connectedWalls as $wall) {					
+					$sql = "delete from walls where wall_id = ".$wall['wall_id'];
+					self::DbQuery( $sql );
+
+					self::notifyAllPlayers( "wallStatus", clienttranslate( '${wall_name} wall is destroyed due to the successful placement' ), array(
+						'wall_name' => $this->resources[$wall['wall_type']],
+						'wall_x' => $wall['wall_x'],
+						'wall_y' => $wall['wall_y'],
+						'wall_rotation' => $wall['wall_rotation']
+					) );
+				}
+			}
         }
 
         //placement was okay? move the tile. Clear any fails
