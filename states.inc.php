@@ -112,7 +112,7 @@ $machinestates = array(
         "args" => "argPlayTile",
         "type" => "activeplayer",
         "possibleactions" => array( "playTile" ),
-        "transitions" => array( "placeTile" => 22, "zombiePass" => 70)
+        "transitions" => array( "placeTile" => 22, "tileBlocked" => 20, "zombiePass" => 70)
     ),
 
     22 => array(
@@ -123,7 +123,7 @@ $machinestates = array(
         "type" => "activeplayer",
         "updateGameProgression" => true,
         "possibleactions" => array( "playTile", "confirmTile" ),
-        "transitions" => array("placeTile" => 22, "tilesDone" => 30, "extraTileCheck" => 25, "wallsDefended"=>21, "zombiePass" => 70 )
+        "transitions" => array("placeTile" => 22, "tileBlocked" => 20, "tilesDone" => 30, "extraTileCheck" => 25, "wallsDefended"=>21, "zombiePass" => 70 )
     ),
 
     25 => array(

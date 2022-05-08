@@ -1576,7 +1576,51 @@ class akeruption extends Table
                     'tile' => $tile
                 ) );
 
-                $this->gamestate->nextState( 'wallsDefended' );
+                //after this defense, are there any valid placements left for this tile?
+				
+				//get playable spaces on the board
+				$tileData = $this->argPlayTile();
+				$connectedSpaces = $tileData["connectedEmptySpaces"];
+				$failedPlacements = $tileData["failedPlacements"];
+
+				$playableTileFound = false;				
+		
+				for ($i=0; $i<count($connectedSpaces) && !$playableTileFound;$i++)
+				{
+					$space = $connectedSpaces[$i];
+					
+					foreach ($failedPlacements as $failed)
+					{
+						if ($failed['placement_x'] == $space['x'] && $failed['placement_y'] == $space['y'])
+						{
+							continue 2;
+						}
+					}					
+					
+					$validRotations = $this->getValidRotations($tile, $space['x'], $space['y'], false);
+					if (count($validRotations) > 0) {
+						$playableTileFound = true;
+					}
+				}
+		
+				if (!$playableTileFound)
+				{		
+					//move active tile to discard, notify players to destroy it
+					$this->tiles->moveCard( $tile['id'], 'discard');
+					self::notifyAllPlayers("tileRemove", "", array(
+						'tile' => $tile
+					) );
+
+					//send a notification to other players					
+					self::notifyAllPlayers( "tileBlocked", clienttranslate( '${player_name} discards the tile as it can no longer be placed' ), array(
+						'player_name' => self::getActivePlayerName()
+					) );	
+					
+					$this->gamestate->nextState( 'tileBlocked' );
+					return;
+				}				
+				
+				$this->gamestate->nextState( 'wallsDefended' );				
                 return;
             }
 			else
@@ -2587,6 +2631,16 @@ class akeruption extends Table
             for ($i=0; $i<count($connectedSpaces) && !$playableTileFound;$i++)
             {
                 $space = $connectedSpaces[$i];
+				
+				$failedPlacements = $tileData["failedPlacements"];
+				//it is possible to rech this state with failed placements from a previous tile, check them here
+				foreach ($failedPlacements as $failed)
+				{
+					if ($failed['placement_x'] == $space['x'] && $failed['placement_y'] == $space['y'])
+					{
+						continue 2;
+					}
+				}					
 
                 $validRotations = $this->getValidRotations($tile, $space['x'], $space['y'], false);
                 if (count($validRotations) > 0) {
